@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MyCvApp</string>
+
+    <string name="not_available">Not available</string>
+
+    <string name="personal_data">Personal data</string>
+    <string name="work_history">Work history</string>
+    <string name="technical_summary">Technical summary</string>
+
+    <string name="personal_data_summary">Summary</string>
+
+    <string name="work_history_role">Role:</string>
+    <string name="work_history_company">Company:</string>
+    <string name="work_history_start">Start date:</string>
+    <string name="work_history_duration">Duration:</string>
+    <string name="work_history_summary">Summary:</string>
+
+    <string name="offline_error_title">You are offline.</string>
+    <string name="offline_error_message">Please check your internet connection and retry.</string>
+    <string name="load_data_error_title">Couldn’t load data.</string>
+    <string name="load_data_error_message">Something went wrong while loading the content</string>
+    <string name="cached_data_loaded">Cached data loaded.</string>
+</resources>

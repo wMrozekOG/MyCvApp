@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="onClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="viewModel"
+            type="com.example.mycvapp.viewmodel.MainViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        isRefreshing="@{viewModel.isRequestInProgress}"
+        onRefresh="@{() -> viewModel.refresh()}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.example.mycvapp.view.error.ErrorView
+                android:id="@+id/errorView"
+                errorState="@{viewModel.fullScreenErrorState}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    visible="@{viewModel.isDataVisible}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin_section">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/middle_guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintGuide_percent="0.5"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/photo"
+                        person="@{viewModel.personalData.photo}"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toTopOf="@id/middle_guideline"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        textOrNa="@{viewModel.personalData.name}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="@dimen/dimen_22sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/middle_guideline" />
+
+                    <TextView
+                        android:id="@+id/role"
+                        textOrNa="@{viewModel.personalData.role}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_content"
+                        android:gravity="center"
+                        android:textSize="@dimen/dimen_14sp"
+                        android:textStyle="italic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/name" />
+
+                    <TextView
+                        android:id="@+id/summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_section"
+                        android:text="@string/personal_data_summary"
+                        android:textSize="@dimen/dimen_16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/role"
+                        app:layout_constraintVertical_bias="0.1" />
+
+                    <TextView
+                        android:id="@+id/summary_content"
+                        textOrNa="@{viewModel.personalData.summary}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_content"
+                        android:textSize="@dimen/dimen_14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/summary" />
+
+                    <TextView
+                        android:id="@+id/technicalSummaryButton"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_section"
+                        android:drawableEnd="@drawable/icon_right"
+                        android:onClick="@{(v) -> onClickListener.onClick(v)}"
+                        android:text="@string/technical_summary"
+                        android:textSize="@dimen/dimen_16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/summary_content" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </FrameLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

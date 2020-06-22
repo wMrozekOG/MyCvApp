@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation android:id="@+id/navigation_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/personalDataFragment">
+
+    <fragment
+        android:id="@+id/personalDataFragment"
+        android:name="com.example.mycvapp.view.personal.PersonalDataFragment"
+        android:label="@string/personal_data">
+
+        <action
+            android:id="@+id/actionPersonalToTechnical"
+            app:destination="@id/technicalSummaryFragment">
+
+            <argument
+                android:name="technicalSummary"
+                app:argType="string"
+                app:nullable="false"/>
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/workHistoryFragment"
+        android:name="com.example.mycvapp.view.history.WorkHistoryFragment"
+        android:label="@string/work_history" />
+
+    <fragment
+        android:id="@+id/technicalSummaryFragment"
+        android:name="com.example.mycvapp.view.technical.TechnicalSummaryFragment"
+        android:label="@string/technical_summary">
+
+        <argument
+            android:name="technicalSummary"
+            app:argType="string"
+            app:nullable="false"/>
+    </fragment>
+
+</navigation>
